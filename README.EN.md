@@ -1,10 +1,21 @@
 # Tore
 
-A modern multi-editor desktop application designed for developers and text workers. Built with Electron + Vue 3, providing powerful JSON editing, text editing, code editing, and history management features.
+A completely offline modern multi-editor desktop application designed for developers and text workers. Built with Electron + Vue 3, requires no internet connection, providing powerful JSON editing, text editing, code editing, and history management features — all data stays on your machine.
 
 <p align="center">
   <a href="README.md">简体中文</a> | <a href="README.EN.md">English</a>
 </p>
+
+> ## 🔒 100% Offline · Your Data Stays Yours
+>
+> **Tore is a completely offline desktop application.**
+>
+> - 🚫 **No network required** — all features run locally, works perfectly without internet
+> - 💾 **Local storage only** — uses local SQLite database, files saved wherever you choose
+> - 🛡️ **Zero data collection** — no telemetry, no usage tracking, nothing leaves your machine
+> - 🔑 **You own your data** — no accounts, no cloud sync, everything under your control
+>
+> In an era where more and more tools upload your data to unknown servers, Tore keeps you in full control.
 
 ## ✨ Core Features
 
@@ -202,8 +213,8 @@ A: The application supports multi-tab mode. You can open multiple editor instanc
 A:
 
 - JSON Editor: .json, .jsonc
-- Text Editor: .txt, .md, .markdown, .log
-- Code Editor: .js, .ts, .py, .java, .cpp, .html, .css, etc.
+- Text Editor: .txt, .md, .markdown
+- Code Editor: .js, .ts, .py, .java, .cpp, .go, .rb, .sql, .xml, .yaml, .toml, .ini, .sh, .dockerfile, etc.
 
 ### Q: How to customize themes?
 
