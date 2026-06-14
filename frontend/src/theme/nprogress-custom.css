@@ -1,0 +1,15 @@
+/* 
+ * nProgress 自定义样式
+ * 隐藏右上角的spinner，只保留顶部进度条
+ */
+
+/* 隐藏右上角的旋转spinner */
+#nprogress .spinner {
+  display: none !important;
+}
+
+/* 可选：调整进度条样式 */
+#nprogress .bar {
+  background: #1890ff !important; /* 使用主题色 */
+  height: 2px !important;
+}

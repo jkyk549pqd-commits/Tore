@@ -1,0 +1,174 @@
+// 基础动画定义（与首页保持一致）
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.json-container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+
+  // 统一动画时长为 0.3s，与 History 组件保持一致
+  animation: fadeIn 0.3s ease-out;
+  will-change: opacity;
+  contain: layout paint; // 限制重绘范围
+
+  .page-header {
+    flex-shrink: 0;
+    background: var(--el-bg-color, #fff);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    animation: fadeInDown 0.3s ease-out 0.05s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+
+    &.is-pinned {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--el-text-color-primary, #000);
+    }
+
+    .config-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--el-border-color-lighter, #f0f0f0);
+    }
+  }
+
+  .page-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    // 移除 flex-wrap，确保编辑器不会换行
+    gap: 10px;
+    animation: fadeInUp 0.3s ease-out 0.1s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+    
+    // 当只有一个编辑器时
+    &:not(:has(.textarea-wrapper + .textarea-wrapper)) {
+      .textarea-wrapper {
+        width: 100%;
+      }
+    }
+    
+    // 当有两个编辑器时
+    &:has(.textarea-wrapper + .textarea-wrapper) {
+      .textarea-wrapper {
+        width: calc(50% - 5px); // 减去 gap 的一半
+      }
+    }
+  }
+}
+
+.btn-header-right {
+  text-align: right;
+  padding-right: 0px;
+  button {
+    margin-left: 3px;
+    border-radius: 8px;
+  }
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-compare {
+  position: fixed;
+  bottom: 50%;
+  right: 50px;
+  z-index: 1000;
+  border-radius: 8px;
+}
+
+.cmConf-fade-enter-active,
+.cmConf-fade-leave-active {
+  transition: all 0.2s ease-out; // 优化：缩短过渡时长
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(0);
+  will-change: transform, opacity, max-height;
+}
+
+.cmConf-fade-enter-from,
+.cmConf-fade-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+:global(.theme-select-dropdown) {
+  min-width: 150px !important;
+}
+
+// 增强编辑器面板的交互动画效果 - 优化性能
+::v-deep(.json-editor-panel) {
+  transition: all 0.2s ease; // 优化：缩短过渡时长
+  border-radius: 8px;
+  will-change: transform;
+  contain: layout style paint; // 优化：限制重绘范围
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+// 增强按钮的交互动画效果 - 优化性能
+.btn-header-right,
+.btn-compare {
+  button {
+    transition: all 0.2s ease; // 优化：缩短过渡时长
+    will-change: transform, box-shadow;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

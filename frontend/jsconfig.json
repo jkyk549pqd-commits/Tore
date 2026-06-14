@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "jsx": "preserve",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "/@/*": ["src/*"]
+    },
+    "types": ["vite/client"]
+  },
+  "exclude": ["node_modules"]
+}

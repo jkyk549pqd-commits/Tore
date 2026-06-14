@@ -1,0 +1,104 @@
+/**
+ * 代码编辑器样式
+ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.code-editor-container {
+  display: flex;
+  min-height: calc(100vh - 100px);
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+
+  animation: fadeIn 0.3s ease-out;
+  will-change: opacity;
+  contain: layout paint; // 限制重绘范围
+
+  .page-header {
+    flex-shrink: 0;
+    background: var(--el-bg-color, #fff);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    animation: fadeInDown 0.3s ease-out 0.05s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+  }
+
+  .page-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    animation: fadeInUp 0.3s ease-out 0.1s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+
+    // 当只有一个编辑器时
+    &:not(:has(.textarea-wrapper + .textarea-wrapper)) {
+      .textarea-wrapper {
+        width: 100%;
+      }
+    }
+
+    // 当有两个编辑器时
+    &:has(.textarea-wrapper + .textarea-wrapper) {
+      .textarea-wrapper {
+        width: calc(50% - 5px); // 减去 gap 的一半
+      }
+    }
+  }
+}
+
+.cmConf-fade-enter-active,
+.cmConf-fade-leave-active {
+  transition: all 0.2s ease-out; // 优化：缩短过渡时长
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(0);
+  will-change: transform, opacity, max-height;
+}
+
+.cmConf-fade-enter-from,
+.cmConf-fade-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.btn-compare {
+  position: fixed;
+  bottom: 50%;
+  right: 50px;
+  z-index: 1000;
+  border-radius: 8px;
+}

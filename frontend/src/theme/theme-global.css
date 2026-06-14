@@ -1,0 +1,459 @@
+/**
+ * 全局主题样式
+ * 基于主题 CSS 变量的全局样式定义
+ */
+
+/* ==================== 基础样式 ==================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-color, #303133);
+  background-color: var(--bg-color, #ffffff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-menu-inline-collapsed-tooltip {
+  display: none !important;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color-page, #f2f3f5);
+}
+
+/* ==================== 深色主题适配 ==================== */
+.dark body {
+  color: var(--text-color, #e5eaf3);
+  background-color: var(--bg-color, #141414);
+}
+
+.dark #app {
+  background-color: var(--bg-color-page, #0a0a0a);
+}
+
+/* ==================== 滚动条样式 ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--el-bg-color-page, #f2f3f5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--el-border-color-dark, #d4d7de);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--el-border-color-darker, #cdd0d6);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--el-bg-color-page, #0a0a0a);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--el-border-color-dark, #58585b);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--el-border-color-darker, #636466);
+}
+
+/* ==================== Element Plus 组件样式覆盖 ==================== */
+
+/* 卡片样式 */
+.el-card {
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color-light, #e4e7ed);
+}
+
+/* 按钮样式 */
+.el-button {
+  border-color: var(--el-border-color, #dcdfe6);
+}
+
+/* 输入框样式 */
+.el-input__wrapper {
+  background-color: var(--el-fill-color-blank, #ffffff);
+  box-shadow: 0 0 0 1px var(--el-border-color, #dcdfe6) inset;
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--el-border-color-dark, #d4d7de) inset;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--el-color-primary, #409eff) inset;
+}
+
+/* 表格样式 */
+.el-table {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.el-table th,
+.el-table tr {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+  background-color: var(--el-fill-color-light, #f5f7fa);
+}
+
+.el-table--border::after,
+.el-table--group::after,
+.el-table::before {
+  background-color: var(--el-border-color-lighter, #ebeef5);
+}
+
+/* 下拉菜单样式 */
+.el-dropdown-menu {
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color-light, #e4e7ed);
+}
+
+.el-dropdown-menu__item:hover {
+  background-color: var(--el-fill-color-light, #f5f7fa);
+}
+
+/* 对话框样式 */
+.el-dialog {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+/* 抽屉样式 */
+.el-drawer {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+/* 消息提示样式 */
+.el-message {
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color-light, #e4e7ed);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== ant-design-vue 组件样式覆盖 ==================== */
+
+/* 确保 ant-design-vue 组件也能响应主题变化 */
+.ant-layout {
+  background-color: var(--bg-color-page, #f2f3f5);
+}
+
+.dark .ant-layout {
+  background-color: var(--bg-color-page, #0a0a0a);
+}
+
+.ant-card {
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color-light, #e4e7ed);
+}
+
+.dark .ant-card {
+  background-color: var(--el-bg-color, #141414);
+  border-color: var(--el-border-color-light, #414243);
+}
+
+/* 表格样式 */
+.ant-table {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.dark .ant-table {
+  background-color: var(--el-bg-color, #141414);
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--el-fill-color-light, #f5f7fa);
+  color: var(--el-text-color-primary, #303133);
+}
+
+.dark .ant-table-thead > tr > th {
+  background-color: var(--el-fill-color-light, #1d1e1f);
+  color: var(--el-text-color-primary, #e5eaf3);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: var(--el-fill-color-light, #f5f7fa);
+}
+
+.dark .ant-table-tbody > tr:hover > td {
+  background-color: var(--el-fill-color-light, #1d1e1f);
+}
+
+/* 模态框样式 */
+.ant-modal-content,
+.ant-modal-header,
+.ant-modal-body,
+.ant-modal-footer {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.dark .ant-modal-content,
+.dark .ant-modal-header,
+.dark .ant-modal-body,
+.dark .ant-modal-footer {
+  background-color: var(--el-bg-color, #141414);
+}
+
+/* 抽屉样式 */
+.ant-drawer-content,
+.ant-drawer-header {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.dark .ant-drawer-content,
+.dark .ant-drawer-header {
+  background-color: var(--el-bg-color, #141414);
+}
+
+/* 输入框样式 */
+.ant-input {
+  background-color: var(--el-fill-color-blank, #ffffff);
+  border-color: var(--el-border-color, #dcdfe6);
+  color: var(--el-text-color-primary, #303133);
+}
+
+.dark .ant-input {
+  background-color: var(--el-fill-color-blank, #141414);
+  border-color: var(--el-border-color, #4c4d4f);
+  color: var(--el-text-color-primary, #e5eaf3);
+}
+
+.ant-input:hover {
+  border-color: var(--el-color-primary, #409eff);
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: var(--el-color-primary, #409eff);
+  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+/* 按钮样式 */
+.ant-btn {
+  color: var(--el-text-color-primary, #303133);
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color, #dcdfe6);
+}
+
+.dark .ant-btn {
+  color: var(--el-text-color-primary, #e5eaf3);
+  background-color: var(--el-bg-color, #141414);
+  border-color: var(--el-border-color, #4c4d4f);
+}
+
+/* Primary 按钮 - 文字和图标颜色应为白色 */
+.ant-btn-primary {
+  background-color: var(--el-color-primary, #409eff);
+  border-color: var(--el-color-primary, #409eff);
+  color: #ffffff !important;
+}
+
+.dark .ant-btn-primary {
+  background-color: var(--el-color-primary, #409eff);
+  border-color: var(--el-color-primary, #409eff);
+  color: #ffffff !important;
+}
+
+/* Danger Primary 按钮 */
+.ant-btn-primary.ant-btn-dangerous {
+  background-color: var(--el-color-danger, #f56c6c);
+  border-color: var(--el-color-danger, #f56c6c);
+  color: #ffffff !important;
+}
+
+.dark .ant-btn-primary.ant-btn-dangerous {
+  background-color: var(--el-color-danger, #f56c6c);
+  border-color: var(--el-color-danger, #f56c6c);
+  color: #ffffff !important;
+}
+
+/* Link 按钮 */
+.ant-btn-link {
+  color: var(--el-color-primary, #409eff);
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.dark .ant-btn-link {
+  color: var(--el-color-primary, #409eff);
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Link Danger 按钮 */
+.ant-btn-link.ant-btn-dangerous {
+  color: var(--el-color-danger, #f56c6c);
+}
+
+.dark .ant-btn-link.ant-btn-dangerous {
+  color: var(--el-color-danger, #f56c6c);
+}
+
+/* 下拉菜单样式 */
+.ant-dropdown {
+  background-color: var(--el-bg-color, #ffffff);
+  border-color: var(--el-border-color-light, #e4e7ed);
+}
+
+.dark .ant-dropdown {
+  background-color: var(--el-bg-color, #141414);
+  border-color: var(--el-border-color-light, #414243);
+}
+
+.ant-dropdown-menu {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.dark .ant-dropdown-menu {
+  background-color: var(--el-bg-color, #141414);
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: var(--el-fill-color-light, #f5f7fa);
+}
+
+.dark .ant-dropdown-menu-item:hover {
+  background-color: var(--el-fill-color-light, #1d1e1f);
+}
+
+/* 消息提示样式 */
+.ant-message {
+  background-color: var(--el-bg-color, #ffffff);
+}
+
+.dark .ant-message {
+  background-color: var(--el-bg-color, #141414);
+}
+
+/* ==================== Tabs 标签页样式 ==================== */
+.ant-tabs {
+  background-color: transparent;
+}
+
+.dark .ant-tabs {
+  background-color: transparent;
+}
+
+/* 标签项基础样式 */
+.ant-tabs-tab {
+  background-color: transparent !important;
+  color: var(--el-text-color-primary, #303133);
+  transition: all 0.3s ease;
+}
+
+.dark .ant-tabs-tab {
+  background-color: var(--el-fill-color-light, #1d1e1f) !important;
+  color: var(--el-text-color-primary, #e5eaf3);
+}
+
+/* 激活的标签项 */
+.ant-tabs-tab-active {
+  background-color: var(--el-color-primary-light-9, #e8f4ff) !important;
+  color: var(--el-color-primary, #409eff);
+}
+
+.dark .ant-tabs-tab-active {
+  background-color: var(--el-fill-color-dark, #262727) !important;
+  color: #ffffff !important;
+}
+
+/* 悬停的标签项 */
+.ant-tabs-tab:hover {
+  background-color: var(--el-color-primary-light-9, #e8f4ff);
+}
+
+.dark .ant-tabs-tab:hover {
+  background-color: var(--el-fill-color-dark, #262727);
+}
+
+/* 标签页导航栏 */
+.ant-tabs-nav {
+  background-color: transparent;
+}
+
+.dark .ant-tabs-nav {
+  background-color: transparent;
+}
+
+.ant-tabs-nav::before {
+  border-bottom: 1px solid var(--el-border-color-lighter, #ebeef5);
+}
+
+.dark .ant-tabs-nav::before {
+  border-bottom: 1px solid var(--el-border-color-lighter, #363637);
+}
+
+/* ==================== 工具类 ==================== */
+
+/* 文本颜色 */
+.text-primary {
+  color: var(--el-color-primary, #409eff);
+}
+
+.text-success {
+  color: var(--el-color-success, #67c23a);
+}
+
+.text-warning {
+  color: var(--el-color-warning, #e6a23c);
+}
+
+.text-danger {
+  color: var(--el-color-danger, #f56c6c);
+}
+
+.text-info {
+  color: var(--el-color-info, #909399);
+}
+
+/* 背景颜色 */
+.bg-primary {
+  background-color: var(--el-color-primary, #409eff);
+}
+
+.bg-success {
+  background-color: var(--el-color-success, #67c23a);
+}
+
+.bg-warning {
+  background-color: var(--el-color-warning, #e6a23c);
+}
+
+.bg-danger {
+  background-color: var(--el-color-danger, #f56c6c);
+}
+
+/* 边框颜色 */
+.border-primary {
+  border-color: var(--el-color-primary, #409eff);
+}
+
+.border-success {
+  border-color: var(--el-color-success, #67c23a);
+}
+
+.border-warning {
+  border-color: var(--el-color-warning, #e6a23c);
+}
+
+.border-danger {
+  border-color: var(--el-color-danger, #f56c6c);
+}
+
+/* ==================== 响应式主题切换过渡效果 ==================== */
+.theme-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

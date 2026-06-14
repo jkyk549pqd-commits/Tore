@@ -1,0 +1,253 @@
+// 基础动画定义（与首页和 JSON 编辑器保持一致）
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.history-container {
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  
+  // 优化动画：缩短时长，添加硬件加速
+  animation: fadeIn 0.3s ease-out;
+  will-change: opacity;
+  contain: layout paint; // 限制重绘范围
+
+  .page-header {
+    flex-shrink: 0;
+    background: var(--el-bg-color, #fff);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    animation: fadeInDown 0.3s ease-out 0.05s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+
+    .query-section,
+    .operate-section {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .page-content {
+    flex: 1;
+    background: var(--el-bg-color, #fff);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    
+    // 缩短动画时长
+    animation: fadeInUp 0.3s ease-out 0.1s both;
+    will-change: transform, opacity;
+    contain: layout paint;
+
+    .table-toolbar {
+      // 缩短动画时长
+      animation: fadeInRight 0.2s ease-out 0.15s both;
+      will-change: transform, opacity;
+    }
+
+    .el-button {
+      width: 32px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    // 分页组件动画 - 优化
+    :deep(.el-pagination) {
+      animation: fadeInRight 0.2s ease-out 0.2s both;
+      will-change: transform, opacity;
+    }
+
+    // 确保表格容器占满空间
+    > .el-table {
+      flex: 1;
+      min-height: 0;
+    }
+  }
+}
+
+// Element Plus 表格样式优化 - 合并所有表格相关样式并添加性能优化
+:deep(.el-table) {
+  // 添加性能优化
+  will-change: transform;
+  contain: layout style paint;
+  
+  // 强制表格占满宽度
+  width: 100% !important;
+
+  // 内部包装器宽度设置
+  .el-table__inner-wrapper {
+    width: 100% !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // 表头和表体包装器
+  .el-table__header-wrapper,
+  .el-table__body-wrapper {
+    width: 100% !important;
+  }
+
+  // 表头包装器
+  .el-table__header-wrapper {
+    overflow: hidden !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
+  }
+
+  // 表体包装器
+  .el-table__body-wrapper {
+    overflow: auto !important;
+    flex: 1;
+  }
+
+  // 表头和表体容器
+  .el-table__header,
+  .el-table__body {
+    width: 100% !important;
+
+    // 内部表格元素
+    table {
+      width: 100% !important;
+      // 使用 fixed 布局让列宽设置严格生效
+      table-layout: fixed;
+    }
+
+    // 表格行占满宽度
+    tr {
+      width: 100%;
+    }
+  }
+
+  // 单元格样式
+  .el-table__header th,
+  .el-table__body td {
+    box-sizing: border-box;
+    padding: 8px 16px;
+    word-break: break-word;
+    position: relative;
+    // 确保单元格不会超出设置的宽度
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// 确保表格列宽设置生效
+:deep(.el-table) {
+  // 确保具有 width 属性的列能够正确应用宽度
+  .el-table__header th,
+  .el-table__body td {
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+// 滚动条样式优化
+:deep(.el-table__body-wrapper) {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d9d9d9 0%, #bfbfbf 100%);
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+
+    &:hover {
+      background: linear-gradient(180deg, #bfbfbf 0%, #a6a6a6 100%);
+    }
+
+    &:active {
+      background: linear-gradient(180deg, #a6a6a6 0%, #8c8c8c 100%);
+    }
+  }
+}
+
+// 分页组件样式调整
+:deep(.el-pagination) {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding: 0;
+}
+
+// Tooltip 内容换行样式
+.custom-tooltip {
+  max-width: 400px !important;
+}
+
+.tooltip-content {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  max-width: 400px;
+}

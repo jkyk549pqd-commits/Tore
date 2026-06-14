@@ -1,0 +1,99 @@
+/*
+  * 首页样式文件
+  * 提供全局样式和工具类
+*/
+
+// 全局样式重置
+* {
+  box-sizing: border-box;
+}
+
+// 首页容器
+.home-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 内容区域
+.content-wrapper {
+  // 确保内容不会溢出
+  overflow: hidden;
+
+  // 卡片通用样式
+  > div {
+    animation: fadeIn 0.4s ease-out;
+  }
+}
+
+// 动画定义
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// 滚动条样式
+::v-deep(.ant-empty) {
+  .ant-empty-description {
+    color: #8c8c8c;
+  }
+}
+
+// 按钮通用样式优化
+::v-deep(.ant-btn) {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+}
+
+// Popconfirm 样式优化
+::v-deep(.ant-popconfirm) {
+  .ant-popconfirm-buttons {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}
+
+// 加载状态样式
+::v-deep(.ant-spin) {
+  .ant-spin-dot {
+    i {
+      background-color: #1890ff;
+    }
+  }
+}
+
+// 响应式断点工具类
+@media (max-width: 576px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .tablet-hidden {
+    display: none;
+  }
+}
+
+// 打印样式
+@media print {
+  .home-container {
+    background: white;
+  }
+
+  .quick-actions,
+  .feature-highlights {
+    display: none;
+  }
+}

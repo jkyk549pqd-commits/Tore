@@ -1,0 +1,20 @@
+node_modules
+out/
+logs/
+run/
+.idea/
+# package-lock.json # CI 需要，已提交
+data/
+.vscode/launch.json
+public/electron/
+public/dist
+pnpm-lock.yaml
+
+build/
+# 以下文件是打包必需资源，必须被 Git 跟踪
+!build/icons/
+!build/extraResources/
+!build/script/
+public/dist/index.html
+.claude/settings.local.json
+public/dist/
